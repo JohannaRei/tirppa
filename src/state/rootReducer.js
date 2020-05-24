@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-//import settingsReducer from './settings/settingsReducer';
-//import validationReducer from './validation/validationReducer';
+import settingsReducer from './settings/settingsReducer';
 
 const rootReducer = combineReducers({
-  //settingsReducer,
-  //validationReducer,
+  settingsReducer,
 });
 
 export default rootReducer;

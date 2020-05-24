@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { store, persistor } from './src/state';
 import routes from './src/routes';
 import { headerStyle } from './src/theme';
 
@@ -20,16 +23,20 @@ const Main = () => (
 );
 
 const App = () => (
-  <NavigationContainer>
-    <RootStack.Navigator mode="modal">
-      <RootStack.Screen
-        name="Main"
-        component={Main}
-        options={{ headerShown: false }}
-      />
-      <RootStack.Screen {...routes.settingsScene} />
-    </RootStack.Navigator>
-  </NavigationContainer>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <NavigationContainer>
+        <RootStack.Navigator mode="modal">
+          <RootStack.Screen
+            name="Main"
+            component={Main}
+            options={{ headerShown: false }}
+          />
+          <RootStack.Screen {...routes.settingsScene} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </PersistGate>
+  </Provider>
 );
 
 export default App;

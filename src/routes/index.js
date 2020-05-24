@@ -14,23 +14,23 @@ const routes = {
   },
   infoScene: {
     name: '/info',
-    component: InfoScene,
+    component: wrapper(InfoScene),
   },
   listenScene: {
     name: '/listen',
-    component: ListenScene,
+    component: wrapper(ListenScene),
   },
   matchesScene: {
     name: '/matches',
-    component: MatchesScene,
+    component: wrapper(MatchesScene),
   },
   settingsScene: {
     name: '/settings',
-    component: SettingsScene,
+    component: wrapper(SettingsScene),
   },
   validateScene: {
     name: '/validate',
-    component: ValidateScene,
+    component: wrapper(ValidateScene),
   },
 };
 
