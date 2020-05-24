@@ -5,10 +5,12 @@ import MatchesScene from '../scenes/Matches';
 import SettingsScene from '../scenes/Settings';
 import ValidateScene from '../scenes/Validate';
 
+import wrapper from './routeWrapper';
+
 const routes = {
   homeScene: {
     name: '/home',
-    component: HomeScene,
+    component: wrapper(HomeScene),
   },
   infoScene: {
     name: '/info',
