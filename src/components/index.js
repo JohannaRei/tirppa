@@ -1,5 +1,5 @@
 import SceneContainer from './SceneContainer';
 import RecordButton from './RecordButton';
-import TopBar from './TopBar';
+import MenuButton from './MenuButton';
 
-export { SceneContainer, RecordButton, TopBar };
+export { SceneContainer, RecordButton, MenuButton };
