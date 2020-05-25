@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { SceneContainer } from '../../components';
+
+// backbutton press should wipe matches from state?
 
 const MatchesScene = () => (
-  <View>
+  <SceneContainer>
     <Text>Matches Scene</Text>
-  </View>
+  </SceneContainer>
 );
 
 export default MatchesScene;

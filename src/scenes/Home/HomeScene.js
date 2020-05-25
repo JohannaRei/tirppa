@@ -1,40 +1,60 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
-import { SceneContainer, RecordButton, MenuButton } from '../../components';
+import { SceneContainer, RecordButton } from '../../components';
 
-const HomeScene = ({ navigation, userName }) => {
+const HomeScene = ({
+  navigation,
+  matchesState: { fetchingMatches, matches },
+  getMatches,
+}) => {
   const [recording, setRecording] = useState(false);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <MenuButton onPress={openMenu} menuOpen={false} />,
-    });
-  });
+  useEffect(() => {
+    // if automatic recording is on, start it here
+  }, []);
 
-  const openMenu = () => navigation.navigate('/settings');
+  useEffect(() => {
+    if (fetchingMatches) {
+      setRecording(false);
+    }
+  }, [fetchingMatches]);
 
-  const onPressRecord = () => setRecording(!recording);
+  useEffect(() => {
+    if (matches.length) {
+      navigation.navigate('/matches');
+    }
+  }, [matches]);
+
+  //const openMenu = () => navigation.navigate('/settings');
+
+  const onPressRecord = () => {
+    setRecording(!recording);
+    getMatches();
+  };
+
+  const getText = () => {
+    if (recording) return 'Recording...';
+    if (fetchingMatches) return 'Searching...';
+    return 'Start recording';
+  };
 
   return (
     <SceneContainer>
-      <Text>{recording ? 'Recording...' : 'Start recording'}</Text>
-      <Text>{userName}</Text>
+      <Text>{getText()}</Text>
       <RecordButton onPress={onPressRecord} recording={recording} />
     </SceneContainer>
   );
 };
 
 HomeScene.propTypes = {
-  userName: PropTypes.string,
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
     setOptions: PropTypes.func,
   }),
-};
-
-HomeScene.defaultProps = {
-  userName: '',
+  matchesState: PropTypes.shape({
+    fetchingMatches: PropTypes.bool,
+  }),
 };
 
 export default HomeScene;

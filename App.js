@@ -3,9 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { store, persistor } from './src/state';
+import configureStore from './src/state';
 import routes from './src/routes';
 import { headerStyle } from './src/theme';
+
+const { store, persistor } = configureStore();
 
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -16,9 +18,7 @@ const Main = () => (
     screenOptions={{ headerStyle }}>
     <MainStack.Screen {...routes.homeScene} />
     <MainStack.Screen {...routes.infoScene} />
-    <MainStack.Screen {...routes.listenScene} />
     <MainStack.Screen {...routes.matchesScene} />
-    <MainStack.Screen {...routes.validateScene} />
   </MainStack.Navigator>
 );
 

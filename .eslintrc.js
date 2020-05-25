@@ -24,5 +24,6 @@ module.exports = {
     'react/require-default-props': 0,
     'react/forbid-prop-types': 0,
     'no-use-before-define': 0,
+    'no-underscore-dangle': 0,
   },
 };

@@ -1,3 +1,3 @@
-import HomeScene from './HomeScene';
+import HomeSceneWrapper from './HomeSceneWrapper';
 
-export default HomeScene;
+export default HomeSceneWrapper;
